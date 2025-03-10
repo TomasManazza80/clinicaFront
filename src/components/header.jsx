@@ -95,7 +95,7 @@ export const Header = () => {
       <div className="overlay" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
         <div className="container">
           <div className="row">
-            <div className="col-md-8 col-md-offset-2 intro-text" style={{ color: "#fff", textAlign: "left", marginLeft: "-250px" }}>
+            <div className="col-md-8 col-md-offset-2 intro-text" style={{ color: "#fff", textAlign: "left", marginLeft: "auto" }}>
             <h1 style={{ fontSize: 36, fontWeight: 700, color: "#fff" }}>{headerData.title}</h1>
               <span></span>
               <p style={{ fontSize: 18, color: "#fff" }}>{headerData.paragraph}</p>

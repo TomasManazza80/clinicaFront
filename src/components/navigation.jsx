@@ -66,7 +66,7 @@ const Navigation = () => {
             <span class="icon-bar"></span>
           </button>
           
-          <a className="navbar-brand center-text" href="#page-top" style={{ color: 'black', marginLeft: '-200px', display: 'flex', alignItems: 'center' }}>
+          <a className="navbar-brand center-text" href="#page-top" style={{ color: 'black', marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
   <img src="/img/ojoLogo.gif" alt="Logo" style={{ width: '60px', height: '60px', marginRight: '10px' }} />
   CLINICA OFTALMOLOGICA VISAGE
 </a>
