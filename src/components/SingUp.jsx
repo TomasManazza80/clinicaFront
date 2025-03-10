@@ -4,33 +4,40 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const outerContainerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  backgroundImage: 'linear-gradient(to bottom, #f7f7f7, #fff)',
+};
+
 const containerStyle = {
   maxWidth: '400px',
-  margin: '0 auto',
   padding: '20px',
   border: '1px solid #ccc',
   borderRadius: '5px',
-  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   backgroundColor: '#fff',
-  textAlign: 'center'
+  textAlign: 'center',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
 };
 
 const formGroupStyle = {
   marginBottom: '15px',
-  textAlign: 'left'
+  textAlign: 'left',
 };
 
 const labelStyle = {
   display: 'block',
   marginBottom: '5px',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 };
 
 const inputStyle = {
   width: '100%',
   padding: '10px',
   border: '1px solid #ccc',
-  borderRadius: '3px'
+  borderRadius: '3px',
 };
 
 const buttonStyle = {
@@ -41,11 +48,12 @@ const buttonStyle = {
   textTransform: 'uppercase',
   cursor: 'pointer',
   margin: '5px',
-  transition: 'background-color 0.3s ease'
+  transition: 'background-color 0.3s ease',
+  borderRadius: '5px',
 };
 
 const buttonHoverStyle = {
-  backgroundColor: '#0056b3'
+  backgroundColor: '#0056b3',
 };
 
 const SignUp = () => {
@@ -87,80 +95,74 @@ const SignUp = () => {
   };
 
   return (
-    <div style={containerStyle} className="signup-container">
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <h2>Registro</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={formGroupStyle} className="form-group">
-          <label style={labelStyle} htmlFor="username">Nombre de usuario</label>
-          <input
-            style={inputStyle}
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div style={formGroupStyle} className="form-group">
-          <label style={labelStyle} htmlFor="email">Correo electrónico</label>
-          <input
-            style={inputStyle}
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div style={formGroupStyle} className="form-group">
-          <label style={labelStyle} htmlFor="password">Contraseña</label>
-          <input
-            style={inputStyle}
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div style={formGroupStyle} className="form-group">
-          <label style={labelStyle} htmlFor="number">Número</label>
-          <input
-            style={inputStyle}
-            type="text"
-            id="number"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          style={hover ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          Registrar
-        </button>
-        <button
-          type="button"
-          style={hover ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          onClick={redireccionar}
-        >
-          Volver al Inicio
-        </button>
-      </form>
-      <ToastContainer />
+    <div style={outerContainerStyle}>
+      <div style={containerStyle} className="signup-container">
+        <h2>Registro</h2>
+        <form onSubmit={handleSubmit}>
+          <div style={formGroupStyle} className="form-group">
+            <label style={labelStyle} htmlFor="username">Nombre de usuario</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div style={formGroupStyle} className="form-group">
+            <label style={labelStyle} htmlFor="email">Correo electrónico</label>
+            <input
+              style={inputStyle}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div style={formGroupStyle} className="form-group">
+            <label style={labelStyle} htmlFor="password">Contraseña</label>
+            <input
+              style={inputStyle}
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div style={formGroupStyle} className="form-group">
+            <label style={labelStyle} htmlFor="number">Número</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="number"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            style={hover ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            Registrar
+          </button>
+          <button
+            type="button"
+            style={hover ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            onClick={redireccionar}
+          >
+            Volver al Inicio
+          </button>
+        </form>
+        <ToastContainer />
+      </div>
     </div>
   );
 };

@@ -2,20 +2,29 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../auth/authProvieder';
+import { Link } from 'react-scroll';
 
-const buttonStyle = {
-  backgroundColor: '#007bff',
-  color: '#fff',
+const navigationStyles = {
+  backgroundColor: '#fff', // Cambia a blanco
+  color: '#333', // Cambia el color del texto a negro
+  padding: '10px 20px',
+  borderRadius: '5px',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  zIndex: 1000,
+};
+const buttonStyles = {
+  backgroundColor: '#000', // Cambia a negro
+  color: '#fff', // El texto del botón será blanco
   border: 'none',
   padding: '10px 20px',
   textTransform: 'uppercase',
   cursor: 'pointer',
   transition: 'background-color 0.3s ease',
   borderRadius: '5px',
-};
-
-const buttonHoverStyle = {
-  backgroundColor: '#0056b3',
 };
 
 const Navigation = () => {
@@ -42,7 +51,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav id="menu" className="navbar navbar-default navbar-fixed-top navBarMain">
+    <nav id="menu" style={navigationStyles}>
       <div className="container">
         <div className="navbar-header">
           <button
@@ -56,72 +65,74 @@ const Navigation = () => {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a className="navbar-brand center-text" href="#page-top">
-            CLINICA OFTALMOLOGICA VISAGE
-          </a>
+          
+          <a className="navbar-brand center-text" href="#page-top" style={{ color: 'black', marginLeft: '-200px', display: 'flex', alignItems: 'center' }}>
+  <img src="/img/ojoLogo.gif" alt="Logo" style={{ width: '60px', height: '60px', marginRight: '10px' }} />
+  CLINICA OFTALMOLOGICA VISAGE
+</a>
         </div>
 
         <div
           className="collapse navbar-collapse"
           id="bs-example-navbar-collapse-1"
         >
-          <ul className="nav navbar-nav navbar-right">
-            <li>
-              <a href="#Header" className="page-scroll">
-                Inicio
-              </a>
-            </li>
-            <li>
-              <a href="#features" className="page-scroll">
-                Cirugías
-              </a>
-            </li>
-            <li>
-              <a href="#aboutus" className="page-scroll">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#services" className="page-scroll">
-                Servicios
-              </a>
-            </li>
-            <li>
-              <a href="#doctors" className="page-scroll">
-                Doctores
-              </a>
-            </li>
-            <li>
-              <a href="#gallery" className="page-scroll">
-                Gallery
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="page-scroll">
-                Contacto
-              </a>
-            </li>
-            {role === "admin" && (
-              <>
-                <li>
-                  <button
-                    style={buttonStyle}
-                    onClick={handleRedirectAdmin}
-                  >
-                    Admin
-                  </button>
-                </li>
-                <li>
-                  <button
-                    style={buttonStyle}
-                    onClick={handlePanelAdmin}
-                  >
-                    Panel de Admin
-                  </button>
-                </li>
-              </>
-            )}
-          </ul>
+         <ul className="nav navbar-nav navbar-right">
+  <li>
+    <Link to="header" smooth={true} duration={500} className="page-scroll" style={{ color: '#000', textDecoration: 'none' }}>
+      Inicio
+    </Link>
+  </li>
+  <li>
+    <Link to="features" smooth={true} duration={500} className="page-scroll" style={{ color: '#000', textDecoration: 'none' }}>
+      Cirugías
+    </Link>
+  </li>
+  <li>
+    <Link to="about" smooth={true} duration={500} className="page-scroll" style={{ color: '#000', textDecoration: 'none' }}>
+      Nosotros
+    </Link>
+  </li>
+  <li>
+    <Link to="services" smooth={true} duration={500} className="page-scroll" style={{ color: '#000', textDecoration: 'none' }}>
+      Servicios
+    </Link>
+  </li>
+  <li>
+    <Link to="team" smooth={true} duration={500} className="page-scroll" style={{ color: '#000', textDecoration: 'none' }}>
+      Doctores
+    </Link>
+  </li>
+  <li>
+    <Link to="portfolio" smooth={true} duration={500} className="page-scroll" style={{ color: '#000', textDecoration: 'none' }}>
+      Galeria
+    </Link>
+  </li>
+  <li>
+    <Link to="contact" smooth={true} duration={500} className="page-scroll" style={{ color: '#000', textDecoration: 'none' }}>
+      Contacto
+    </Link>
+  </li>
+  {role === "admin" && (
+    <>
+      <li>
+      <button
+            style={buttonStyles}
+            onClick={handleRedirectAdmin}
+          >
+            Admin
+          </button>
+        </li>
+        <li>
+          <button
+            style={buttonStyles}
+            onClick={handlePanelAdmin}
+          >
+            Panel de Admin
+          </button>
+        </li>
+      </>
+    )}
+  </ul>
         </div>
       </div>
     </nav>

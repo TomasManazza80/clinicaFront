@@ -5,33 +5,42 @@ import axios from "axios";
 import * as Yup from "yup";
 import authContext from "../store/store";
 
+const outerContainerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  backgroundImage: 'linear-gradient(to bottom, #f7f7f7, #fff)',
+};
+
 const containerStyle = {
   maxWidth: '400px',
-  margin: '0 auto',
   padding: '20px',
   border: '1px solid #ccc',
   borderRadius: '5px',
-  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   backgroundColor: '#fff',
-  textAlign: 'center'
+  textAlign: 'center',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
 };
 
 const formGroupStyle = {
   marginBottom: '15px',
-  textAlign: 'left'
+  textAlign: 'left',
 };
 
 const labelStyle = {
   display: 'block',
   marginBottom: '5px',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  color: '#333',
 };
 
 const inputStyle = {
   width: '100%',
   padding: '10px',
   border: '1px solid #ccc',
-  borderRadius: '3px'
+  borderRadius: '3px',
+  backgroundColor: '#fff',
 };
 
 const buttonStyle = {
@@ -41,12 +50,13 @@ const buttonStyle = {
   padding: '10px 20px',
   textTransform: 'uppercase',
   cursor: 'pointer',
-  margin: '5px',
-  transition: 'background-color 0.3s ease'
+  margin: '5px 0',
+  transition: 'background-color 0.3s ease',
+  borderRadius: '5px',
 };
 
 const buttonHoverStyle = {
-  backgroundColor: '#0056b3'
+  backgroundColor: '#0056b3',
 };
 
 function Login() {
@@ -60,8 +70,8 @@ function Login() {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid Email").required("Required"),
-    password: Yup.string().required("Required"),
+    email: Yup.string().email("Correo electrónico inválido").required("Requerido"),
+    password: Yup.string().required("Requerido"),
   });
 
   const onSubmit = async (values) => {
@@ -76,14 +86,14 @@ function Login() {
         .post(`https://ophthalmologicalclinicback.onrender.com/login`, data)
         .then((response) => {
           console.log(response);
-          alert(`Welcome back! ${response.data.email}`);
+          alert(`¡Bienvenido de nuevo! ${response.data.email}`);
           authCtx.setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
           navigate("/admin");
         })
         .catch((error) => {
-          console.log("Error of", error);
-          alert("Login failed: " + error.response.data);
+          console.log("Error de", error);
+          alert("Error en el inicio de sesión: " + error.response.data);
         });
     } catch (error) {
       alert(error.message);
@@ -100,56 +110,58 @@ function Login() {
   }, [authCtx, navigate]);
 
   return (
-    <div style={containerStyle} className="login-container">
-      <h2>Login</h2>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        <Form>
-          <div style={formGroupStyle} className="form-group">
-            <label style={labelStyle} htmlFor="email">Correo electrónico</label>
-            <Field
-              type="email"
-              name="email"
-              id="email"
-              style={inputStyle}
-              placeholder="Email"
-            />
-            <p style={{ color: 'red' }}>
-              <ErrorMessage name="email" />
-            </p>
-          </div>
-          <div style={formGroupStyle} className="form-group">
-            <label style={labelStyle} htmlFor="password">Contraseña</label>
-            <Field
-              type="password"
-              name="password"
-              id="password"
-              style={inputStyle}
-              placeholder="Password"
-            />
-            <p style={{ color: 'red' }}>
-              <ErrorMessage name="password" />
-            </p>
-          </div>
-          <button
-            type="submit"
-            style={hover ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            Login
-          </button>
-        </Form>
-      </Formik>
-      <p>
-        Don't have an account? &nbsp;
-        <NavLink to="/signup" style={{ color: 'red' }}>
-          Sign Up
-        </NavLink>
-      </p>
+    <div style={outerContainerStyle}>
+      <div style={containerStyle}>
+        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>Iniciar sesión</h2>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          <Form>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="email">Correo electrónico</label>
+              <Field
+                type="email"
+                name="email"
+                id="email"
+                style={inputStyle}
+                placeholder="Email"
+              />
+              <p style={{ color: 'red' }}>
+                <ErrorMessage name="email" />
+              </p>
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="password">Contraseña</label>
+              <Field
+                type="password"
+                name="password"
+                id="password"
+                style={inputStyle}
+                placeholder="Password"
+              />
+              <p style={{ color: 'red' }}>
+                <ErrorMessage name="password" />
+              </p>
+            </div>
+            <button
+              type="submit"
+              style={hover ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              Iniciar sesión
+            </button>
+          </Form>
+        </Formik>
+        <p>
+          ¿No tienes una cuenta? &nbsp;
+          <NavLink to="/singup" style={{ color: '#007bff' }}>
+            Regístrate
+          </NavLink>
+        </p>
+      </div>
     </div>
   );
 }

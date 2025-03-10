@@ -17,7 +17,7 @@ export const Header = () => {
         // Mapear los datos de la API a las propiedades esperadas por el componente
         setHeaderData({
           title: data.texto1,
-          paragraph: data.texto2,
+          paragraph: "En nuestra clínica, ofrecemos cirugías gratuitas de cataratas para pacientes con ciertas obras sociales. Consulta con nosotros para verificar tu cobertura y acceder a este beneficio. ¡Recupera tu visión sin costo!",
           link: data.link
         });
       } catch (err) {
@@ -32,13 +32,13 @@ export const Header = () => {
 
   if (loading) {
     return (
-      <header id="header" className="intro">
-        <div className="overlay">
+      <header id="header" className="intro" style={{ backgroundColor: "#333" }}>
+        <div className="overlay" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
           <div className="container">
             <div className="row">
-              <div className="col-md-8 col-md-offset-2 intro-text">
-                <h1>Cargando...</h1>
-                <p>Cargando información del encabezado...</p>
+              <div className="col-md-8 col-md-offset-2 intro-text" style={{ color: "#fff" }}>
+                <h1 style={{ fontSize: 36, fontWeight: 700, color: "#fff" }}>Cargando...</h1>
+                <p style={{ fontSize: 18, color: "#fff" }}>Cargando información del encabezado...</p>
               </div>
             </div>
           </div>
@@ -49,13 +49,13 @@ export const Header = () => {
 
   if (error) {
     return (
-      <header id="header" className="intro">
-        <div className="overlay">
+      <header id="header" className="intro" style={{ backgroundColor: "#333" }}>
+        <div className="overlay" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
           <div className="container">
             <div className="row">
-              <div className="col-md-8 col-md-offset-2 intro-text">
-                <h1>Error</h1>
-                <p>Error al cargar la información: {error.message}</p>
+              <div className="col-md-8 col-md-offset-2 intro-text" style={{ color: "#fff" }}>
+                <h1 style={{ fontSize: 36, fontWeight: 700, color: "#fff" }}>Error</h1>
+                <p style={{ fontSize: 18, color: "#fff" }}>Error al cargar la información: {error.message}</p>
               </div>
             </div>
           </div>
@@ -66,13 +66,13 @@ export const Header = () => {
 
   if (!headerData) {
     return (
-      <header id="header" className="intro">
-        <div className="overlay">
+      <header id="header" className="intro" style={{ backgroundColor: "#333" }}>
+        <div className="overlay" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
           <div className="container">
             <div className="row">
-              <div className="col-md-8 col-md-offset-2 intro-text">
-                <h1>Sin datos</h1>
-                <p>No se encontraron datos para el encabezado.</p>
+              <div className="col-md-8 col-md-offset-2 intro-text" style={{ color: "#fff" }}>
+                <h1 style={{ fontSize: 36, fontWeight: 700, color: "#fff" }}>Sin datos</h1>
+                <p style={{ fontSize: 18, color: "#fff" }}>No se encontraron datos para el encabezado.</p>
               </div>
             </div>
           </div>
@@ -90,18 +90,19 @@ export const Header = () => {
       display: "table",
       width: "100%",
       padding: "0",
-      
+      backgroundColor: "rgba(0, 0, 0, 0.5)"
     }}>
-      <div className="overlay">
+      <div className="overlay" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
         <div className="container">
           <div className="row">
-            <div className="col-md-8 col-md-offset-2 intro-text">
-              <h1>{headerData.title}</h1>
+            <div className="col-md-8 col-md-offset-2 intro-text" style={{ color: "#fff", textAlign: "left", marginLeft: "-250px" }}>
+            <h1 style={{ fontSize: 36, fontWeight: 700, color: "#fff" }}>{headerData.title}</h1>
               <span></span>
-              <p>{headerData.paragraph}</p>
+              <p style={{ fontSize: 18, color: "#fff" }}>{headerData.paragraph}</p>
               <a
                 href="#features"
                 className="btn btn-custom btn-lg page-scroll"
+                style={{ color: "#fff", backgroundColor: "#333", border: "none", padding: "10px 20px", borderRadius: "5px" }}
               >
                 Información
               </a>{" "}

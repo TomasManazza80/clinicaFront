@@ -6,7 +6,7 @@ export const About = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    // Fetching data from the API
+    // Obtener datos desde la API
     axios
       .get(`${URL}/aboutUs/getAllAboutUs`)
       .then((response) => {
@@ -15,7 +15,7 @@ export const About = () => {
         }
       })
       .catch((error) => {
-        console.error("Error fetching the About Us data:", error);
+        console.error("Error al obtener los datos de Sobre Nosotros:", error);
       });
   }, []);
 
@@ -23,26 +23,26 @@ export const About = () => {
     <div id="about">
       <div className="container">
         <div className="row">
-          {/* Image Section */}
+          {/* Sección de Imagen */}
           <div className="col-xs-12 col-md-6">
-            <img src="img/about.jpg" className="img-responsive" alt="About Us" />
+            <img src="img/team/teamPick.jpg" className="img-responsive" alt="Sobre Nosotros" />
           </div>
-          {/* Text Section */}
+          {/* Sección de Texto */}
           <div className="col-xs-12 col-md-6">
             <div className="about-text">
-              <h2>About Us</h2>
-              {/* Description */}
-              <p>{data ? data.descripcion : "Loading..."}</p>
-              <h3>Why Choose Us?</h3>
+              <h2>Sobre Nosotros</h2>
+              {/* Descripción */}
+              <p>{data ? data.descripcion : "Cargando..."}</p>
+              <h3>¿Por qué Elegirnos?</h3>
               <div className="list-style">
-                {/* Reasons List */}
+                {/* Lista de Razones */}
                 <div className="col-lg-6 col-sm-6 col-xs-12">
                   <ul>
                     {data && data.razones
                       ? data.razones.map((razon, index) => (
                           <li key={index}>{razon}</li>
                         ))
-                      : "Loading..."}
+                      : "Cargando..."}
                   </ul>
                 </div>
               </div>
