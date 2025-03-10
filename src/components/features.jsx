@@ -9,7 +9,7 @@ export const Features = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${URL}/cirugias/getCirugia/1`);
+        const response = await fetch(`https://ophthalmologicalclinicback.onrender.com/cirugias/getAllCirugias`);
         if (!response.ok) {
           throw new Error("No se pudo obtener la información de la cirugía.");
         }
@@ -69,23 +69,36 @@ export const Features = () => {
       </div>
     );
   }
-
-  return ( 
+  
+  let services = cirugiaData;
+  
+  if (!Array.isArray(services)) {
+    services = [services];
+  }
+  
+  return (
     <div id="features" className="text-center">
       <div className="container">
         <div className="col-md-10 col-md-offset-1 section-title">
           <h2>Cirugías</h2>
         </div>
         <div className="row">
-          <div className="col-xs-12 col-md-12">
-            <h3>{cirugiaData.texto1}</h3>
-            <p>{cirugiaData.texto2}</p>
-            {cirugiaData.link && (
-              <a href={cirugiaData.link} target="_blank" rel="noopener noreferrer">
-                Más información
-              </a>
-            )}
-          </div>
+          {services.map((service) => (
+            <div key={service.id} className="col-md-4">
+              <div className="card">
+                <img src={service.link} alt={service.texto1} className="card-img-top" style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+                <div className="card-body">
+                  <h5 className="card-title">{service.texto1}</h5>
+                  <p className="card-text">{service.texto2}</p>
+                  {service.link && (
+                    <a href={service.link} target="_blank" rel="noopener noreferrer">
+                      Más información
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

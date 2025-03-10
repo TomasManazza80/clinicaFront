@@ -1,15 +1,58 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
 import authContext from "../store/store";
 
+const containerStyle = {
+  maxWidth: '400px',
+  margin: '0 auto',
+  padding: '20px',
+  border: '1px solid #ccc',
+  borderRadius: '5px',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+  backgroundColor: '#fff',
+  textAlign: 'center'
+};
 
+const formGroupStyle = {
+  marginBottom: '15px',
+  textAlign: 'left'
+};
+
+const labelStyle = {
+  display: 'block',
+  marginBottom: '5px',
+  fontWeight: 'bold'
+};
+
+const inputStyle = {
+  width: '100%',
+  padding: '10px',
+  border: '1px solid #ccc',
+  borderRadius: '3px'
+};
+
+const buttonStyle = {
+  backgroundColor: '#007bff',
+  color: '#fff',
+  border: 'none',
+  padding: '10px 20px',
+  textTransform: 'uppercase',
+  cursor: 'pointer',
+  margin: '5px',
+  transition: 'background-color 0.3s ease'
+};
+
+const buttonHoverStyle = {
+  backgroundColor: '#0056b3'
+};
 
 function Login() {
   const navigate = useNavigate();
   const authCtx = useContext(authContext);
+  const [hover, setHover] = useState(false);
 
   const initialValues = {
     email: "",
@@ -53,61 +96,60 @@ function Login() {
     authCtx.setToken(token);
     if (token) {
       // navigate("/");
-      
     }
   }, [authCtx, navigate]);
 
   return (
-    <div className="bg-slate-600 text-white text-center h-screen flex justify-center items-center max-md:h-auto">
+    <div style={containerStyle} className="login-container">
+      <h2>Login</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         <Form>
-          <h1 className="flex my-8 backdrop-blur-sm bg-white/30 p-4 max-lg:m-4 justify-center text-2xl font-thin">
-            CRESCENDO
-          </h1>
-          <div className="flex text-black justify-center ">
-            <div className="py-8 p-1 flex flex-col">
-              <p className=" text-red-500">
-                <ErrorMessage name="email" />
-              </p>
-              <Field
-                type="email"
-                name="email"
-                id="email"
-                className="outline-none p-2"
-                placeholder="Email"
-              />
-            </div>
-            <div className="py-8 p-1 flex flex-col">
-              <p className=" text-red-500">
-                <ErrorMessage name="password" />
-              </p>
-              <Field
-                type="password"
-                name="password"
-                id="password"
-                className="outline-none p-2"
-                placeholder="Password"
-              />
-            </div>
+          <div style={formGroupStyle} className="form-group">
+            <label style={labelStyle} htmlFor="email">Correo electrónico</label>
+            <Field
+              type="email"
+              name="email"
+              id="email"
+              style={inputStyle}
+              placeholder="Email"
+            />
+            <p style={{ color: 'red' }}>
+              <ErrorMessage name="email" />
+            </p>
+          </div>
+          <div style={formGroupStyle} className="form-group">
+            <label style={labelStyle} htmlFor="password">Contraseña</label>
+            <Field
+              type="password"
+              name="password"
+              id="password"
+              style={inputStyle}
+              placeholder="Password"
+            />
+            <p style={{ color: 'red' }}>
+              <ErrorMessage name="password" />
+            </p>
           </div>
           <button
             type="submit"
-            className="m-8 backdrop-blur-sm bg-white/30 py-4 p-6 max-lg:m-4 hover:bg-white/50"
+            style={hover ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
           >
             Login
           </button>
-          <p className="mt-12">
-            Don't have an account? &nbsp;
-            <NavLink to="/signup" className=" text-red-500">
-              Sign Up
-            </NavLink>
-          </p>
         </Form>
       </Formik>
+      <p>
+        Don't have an account? &nbsp;
+        <NavLink to="/signup" style={{ color: 'red' }}>
+          Sign Up
+        </NavLink>
+      </p>
     </div>
   );
 }

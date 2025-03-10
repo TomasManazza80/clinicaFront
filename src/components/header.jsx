@@ -18,7 +18,7 @@ export const Header = () => {
         setHeaderData({
           title: data.texto1,
           paragraph: data.texto2,
-          link: data.link,
+          link: data.link
         });
       } catch (err) {
         setError(err);
@@ -32,15 +32,13 @@ export const Header = () => {
 
   if (loading) {
     return (
-      <header id="header">
-        <div className="intro">
-          <div className="overlay">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-8 col-md-offset-2 intro-text">
-                  <h1>Cargando...</h1>
-                  <p>Cargando información del encabezado...</p>
-                </div>
+      <header id="header" className="intro">
+        <div className="overlay">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 col-md-offset-2 intro-text">
+                <h1>Cargando...</h1>
+                <p>Cargando información del encabezado...</p>
               </div>
             </div>
           </div>
@@ -51,15 +49,13 @@ export const Header = () => {
 
   if (error) {
     return (
-      <header id="header">
-        <div className="intro">
-          <div className="overlay">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-8 col-md-offset-2 intro-text">
-                  <h1>Error</h1>
-                  <p>Error al cargar la información: {error.message}</p>
-                </div>
+      <header id="header" className="intro">
+        <div className="overlay">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 col-md-offset-2 intro-text">
+                <h1>Error</h1>
+                <p>Error al cargar la información: {error.message}</p>
               </div>
             </div>
           </div>
@@ -70,15 +66,13 @@ export const Header = () => {
 
   if (!headerData) {
     return (
-      <header id="header">
-        <div className="intro">
-          <div className="overlay">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-8 col-md-offset-2 intro-text">
-                  <h1>Sin datos</h1>
-                  <p>No se encontraron datos para el encabezado.</p>
-                </div>
+      <header id="header" className="intro">
+        <div className="overlay">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 col-md-offset-2 intro-text">
+                <h1>Sin datos</h1>
+                <p>No se encontraron datos para el encabezado.</p>
               </div>
             </div>
           </div>
@@ -88,22 +82,29 @@ export const Header = () => {
   }
 
   return (
-    <header id="header">
-      <div className="intro">
-        <div className="overlay">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8 col-md-offset-2 intro-text">
-                <h1>{headerData.title}</h1>
-                <span></span>
-                <p>{headerData.paragraph}</p>
-                <a
-                  href="#features"
-                  className="btn btn-custom btn-lg page-scroll"
-                >
-                  Información
-                </a>{" "}
-              </div>
+    <header id="header" style={{
+      backgroundImage: `url(${headerData.link})`, // Utiliza la propiedad link para establecer la imagen de fondo
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      display: "table",
+      width: "100%",
+      padding: "0",
+      
+    }}>
+      <div className="overlay">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 col-md-offset-2 intro-text">
+              <h1>{headerData.title}</h1>
+              <span></span>
+              <p>{headerData.paragraph}</p>
+              <a
+                href="#features"
+                className="btn btn-custom btn-lg page-scroll"
+              >
+                Información
+              </a>{" "}
             </div>
           </div>
         </div>

@@ -16,10 +16,9 @@ import AdminRoute from './adminRoute.jsx';
 
 import { Header } from "../components/header.jsx";
 import { Features } from "../components/features";
+import {Team} from "../components/Team";
 import { Services } from "../components/services";
 import { Gallery } from "../components/gallery";
-import { Team } from "../components/Team";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +26,7 @@ const router = createBrowserRouter([
       <>
         <NavBar />
         <Header data={Header} />
+        <Team data={Team} />
         <Features data={Features} />
         <About data={About} />
         <Services data={Services} />

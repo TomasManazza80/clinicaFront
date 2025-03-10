@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from '../auth/authProvieder'; // Correcting the typo here
-
-
-
+import { AuthContext } from '../auth/authProvieder';
 
 const buttonStyle = {
   backgroundColor: '#007bff',
@@ -23,14 +20,18 @@ const buttonHoverStyle = {
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState("guest"); // Inicializa con "guest"
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user) {
+    if (user && user.role && user.isAuthenticated) {
+      console.log('User:', user);
+      console.log('Role:', user.role);
       setRole(user.role);
     }
   }, [user]);
+
+  console.log('Role:', role);
 
   const handleRedirectAdmin = () => {
     navigate("/admin");

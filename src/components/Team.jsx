@@ -15,7 +15,7 @@ export const Team = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/doctores/getAllDoctors");
+        const response = await axios.get("https://ophthalmologicalclinicback.onrender.com/doctores/getAllDoctors");
         setDoctors(response.data);
         setLoading(false);
       } catch (error) {

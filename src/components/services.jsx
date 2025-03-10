@@ -55,7 +55,7 @@ export const Services = () => {
     return (
       <div id="services" className="text-center">
         <div className="container">
-          <div className="section-title">
+          <div class="section-title">
             <h2>Nuestros Servicios</h2>
             <p>No se encontraron servicios disponibles.</p>
           </div>
@@ -78,9 +78,11 @@ export const Services = () => {
                 <h3>{service.texto1}</h3>
                 <p>{service.texto2}</p>
                 {service.link && (
-                  <a href={service.link} target="_blank" rel="noopener noreferrer">
-                    Más información
-                  </a>
+                  <img
+                    src={service.link}
+                    alt={service.texto1}
+                    style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                  />
                 )}
               </div>
             </div>

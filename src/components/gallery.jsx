@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Image } from "./image";
 import axios from "axios";
 const URL = "https://ophthalmologicalclinicback.onrender.com";
 
@@ -9,7 +8,7 @@ export const Gallery = () => {
   useEffect(() => {
     // Fetch gallery data from the API
     axios
-      .get(`${URL}/gallery/getAllGallery)`)
+      .get(`${URL}/gallery/getAllGallery`)
       .then((response) => {
         if (response.data) {
           setData(response.data); // Store the gallery data in state
@@ -37,12 +36,18 @@ export const Gallery = () => {
                   <div
                     key={`gallery-${d.galleryId}-${i}`}
                     className="col-sm-6 col-md-4 col-lg-4"
+                    style={{ padding: "10px" }}
                   >
-                    <Image
-                      title={d.description} // Using the description as the title
-                      largeImage={d.imageUrl} // URL for a larger view
-                      smallImage={d.imageUrl} // URL for a thumbnail view
-                    />
+                    <div style={{ position: "relative", width: "100%", height: "200px" }}>
+                      <img
+                        src={d.imageUrl}
+                        alt={d.description}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                      <p style={{ position: "absolute", bottom: "10px", left: "10px", color: "white", backgroundColor: "rgba(0,0,0,0.5)", padding: "5px" }}>
+                        {d.description}
+                      </p>
+                    </div>
                   </div>
                 ))
               : "Loading..."}
